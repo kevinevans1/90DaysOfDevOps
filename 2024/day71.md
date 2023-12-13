@@ -410,6 +410,157 @@ output "kube_config" {
 }
 ```
 
+### Deployment Steps
+Remember to have the Azure CLI and Terraform installed, then you can deploy this Terraform manifest using the Azure CLI / PowerShell  with the following commands:
+
+Tip: Log into the Azure from the terminal using ```az login``` before proceeding with the following steps.
+
+#### Step 1: Initializing Terraform  
+
+From your terminal, change the working directory to where your terraform code is located.
+
+e.g ```cd c:\dev\terraform```
+
+Initalize terraform by running the following command:
+
+```
+terraform init
+```
+
+#### Step 2: Produce A Manifest Plan
+
+As terraform is declarative language, we can perform a dry run of our desired state from our manifest files by performing the following command: 
+
+```
+terraform plan
+```
+You will be presented with an execution plan similar to the one below :
+```
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.aks.azurerm_kubernetes_cluster.aks_cluster will be created
+  + resource "azurerm_kubernetes_cluster" "aks_cluster" {
+      + api_server_authorized_ip_ranges     = (known after apply)
+      + dns_prefix                          = "myaksclusterdns"
+      + fqdn                                = (known after apply)
+      + http_application_routing_zone_name  = (known after apply)
+      + id                                  = (known after apply)
+      + image_cleaner_enabled               = false
+      + image_cleaner_interval_hours        = 48
+      + kube_admin_config                   = (sensitive value)
+      + kube_admin_config_raw               = (sensitive value)
+      + kube_config                         = (sensitive value)
+      + kube_config_raw                     = (sensitive value)
+      + kubernetes_version                  = (known after apply)
+      + location                            = "eastus"
+      + name                                = "myAKSCluster"
+      + node_resource_group                 = (known after apply)
+      + node_resource_group_id              = (known after apply)
+      + oidc_issuer_url                     = (known after apply)
+      + portal_fqdn                         = (known after apply)
+      + private_cluster_enabled             = false
+      + private_cluster_public_fqdn_enabled = false
+      + private_dns_zone_id                 = (known after apply)
+      + private_fqdn                        = (known after apply)
+      + public_network_access_enabled       = true
+      + resource_group_name                 = "myAKSCluster-rg"
+      + role_based_access_control_enabled   = true
+      + run_command_enabled                 = true
+      + sku_tier                            = "Free"
+      + support_plan                        = "KubernetesOfficial"
+      + tags                                = {
+          + "Environment" = "Production"
+        }
+      + workload_identity_enabled           = false
+
+      + default_node_pool {
+          + kubelet_disk_type    = (known after apply)
+          + max_pods             = (known after apply)
+          + name                 = "default"
+          + node_count           = 3
+          + node_labels          = (known after apply)
+          + orchestrator_version = (known after apply)
+          + os_disk_size_gb      = (known after apply)
+          + os_disk_type         = "Managed"
+          + os_sku               = (known after apply)
+          + scale_down_mode      = "Delete"
+          + type                 = "VirtualMachineScaleSets"
+          + ultra_ssd_enabled    = false
+          + vm_size              = "Standard_D2s_v3"
+          + workload_runtime     = (known after apply)
+        }
+
+      + identity {
+          + principal_id = (known after apply)
+          + tenant_id    = (known after apply)
+          + type         = "SystemAssigned"
+        }
+    }
+
+  # module.aks.azurerm_resource_group.aks will be created
+  + resource "azurerm_resource_group" "aks" {
+      + id       = (known after apply)
+      + location = "eastus"
+      + name     = "myAKSCluster-rg"
+    }
+
+Plan: 2 to add, 0 to change, 0 to destroy.
+```
+When the terraform plan completes successfully, this represents a good sign that our code will correctly deploy. According to our declared state in the manifest directory. 
+
+#### Step 3: Terraform Deployment Commands
+
+The next step is to deploy our Azure resources using the following command in our working directory:
+```
+terraform apply
+```
+The terraform apply command will run through the plan process again, followed by a prompt confirmation to proceed with the summarized changes.
+
+e.g
+```
+Plan: 2 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+  ```
+
+Enter yes for the deployment to execute. 
+
+Once the deployment is complete you should be presented with confirmation output like below: 
+```
+module.aks.azurerm_kubernetes_cluster.aks_cluster: Creation complete after 3m38s [id=/subscriptions/guid/resourceGroups/myAKSCluster-rg/providers/Microsoft.ContainerService/managedClusters/myAKSCluster]
+
+Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
+```
+
+
+#### Step 4: Connect To Your Cluster
+
+In order to connect to your cluster we need install the Azure kubectl tools, using Azure CLI.
+
+#### Azure CLI
+```
+az aks install-cli
+```
+We need to configure kubectl to connect to your freshly deployed AKS cluster using the az aks get-credentials command. The following command will retrieve your AKS cluster credentials and configure kubectl to use them.
+
+#### Azure CLI
+```
+az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
+```
+Validate the connection to your cluster using the kubectl get command. This command will output a list of the cluster nodes.
+
+#### Azure CLI
+```
+kubectl get nodes
+```
+
 
 
 
@@ -430,5 +581,5 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-- Email: [email@example.com](mailto:email@example.com)
-- GitHub: [github.com/username](https://github.com/username)
+- Website: [Netr](mailto:email@example.com)
+- GitHub: [github.com/kevinevans1](https://github.com/kevinevans1)
