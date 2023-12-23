@@ -19,6 +19,8 @@ id: 1048718
 
 Hello and welcome to day 71 of the 90-day challenge. You should congratulate yourself on making it this far 😊. Learning is not a sprint; it's a marathon! In this section, we will explore Microsoft Azure and the tools, concepts, and methods for securely deploying services in Azure.
 
+## What is Microsoft Azure
+
 ## Table of Contents
 
 - [Account Sign Up](https://azure.microsoft.com/free)
