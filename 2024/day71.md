@@ -11,7 +11,9 @@ id: 1048718
 
 # Azure For Developer Security Operators (DevSecOps)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Static Badge](https://img.shields.io/badge/Licence%3ANonCommercial-ShareAlike-blue)
+
+
 
 ## Description
 
@@ -577,9 +579,10 @@ Guidelines for contributing to the project and how to get involved.
 
 ## License
 
-This project is licensed under the [MIT License](LICENSE).
+This project is licensed under the ![Static Badge](https://img.shields.io/badge/NonCommercial-ShareAlike-blue)
+
 
 ## Contact
 
-- Website: [Netr](mailto:email@example.com)
+- Website: [codetocloud](http://codetocloud.tech)
 - GitHub: [github.com/kevinevans1](https://github.com/kevinevans1)
