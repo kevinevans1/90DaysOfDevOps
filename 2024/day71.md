@@ -20,6 +20,7 @@ id: 1048718
 Hello and welcome to day 71 of the 90-day challenge. You should congratulate yourself on making it this far 😊. Learning is not a sprint; it's a marathon! In this section, we will explore Microsoft Azure and the tools, concepts, and methods for securely deploying services in Azure.
 
 ## What is Microsoft Azure
+Microsoft Azure is a cloud computing platform offering a wide range of services like computing, storage, databases, and more. It enables businesses to build, deploy, and manage applications and services through a global network of data centers, providing scalability, reliability, and various tools for innovation and growth in the digital landscape.
 
 ## Table of Contents
 
@@ -51,36 +52,25 @@ Remember, the free Azure account comes with certain limitations and a trial peri
 
 ## Infrastructure Development Tools
 
-These scripts will install the necessary dependencies to facilitate the deployment of Infrastructure as Code into Azure using Terraform, Bicep, PowerShell, and Azure CLI. 
+These links will navigate you to the necessary dependencies to facilitate the deployment of Infrastructure as Code into Azure using Terraform, Bicep, PowerShell, and Azure CLI. 
 
 This method will focus on Windows OS.
 
 System Requirements:
 
-Operating System: Windows 11 Version 22H2 (OS Build 22621.2715) or higher
+Operating System: Windows 11 Version 23H2 (OS Build 22631.2861) or higher
 
 
-Package Managers:
+### Command Line Dependencies 
 
-- [Chocolatey](https://docs.chocolatey.org/en-us/choco/setup) 
+- [PowerShell](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-windows?view=powershell-7.4)
+- [Git](https://git-scm.com/downloads)
+- [VSCode](https://code.visualstudio.com/Downloadg)
+- [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli-windows?tabs=azure-clig)
+- [Terraform](https://developer.hashicorp.com/terraform/install)
+- [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-windows/)
 
-### Chocolatey Packages (for Windows Desktop):
 
-- [PowerShell](https://community.chocolatey.org/packages/powershell-core)
-- [Git](https://community.chocolatey.org/packages/git)
-- [VSCode](https://community.chocolatey.org/packages/vscode)
-- [Azure CLI](https://community.chocolatey.org/packages/azure-cli)
-- [Terraform](https://community.chocolatey.org/packages/terraform)
-
-## Chocolatey Package Installation Script (PowerShell)
-This script will deploy the Chocolatey packages above:
-```
-choco install powershell-core -y
-choco install git -y
-choco install vscode -y
-choco install azure-cli -y
-choco install terraform -y
-```
 ## Azure CLI Packages (Bicep Install)
 Run the following command to install Azure Bicep from the Powershell 7 terminal, once Azure CLI is installed.
 
@@ -141,7 +131,7 @@ Links:
 - [Microsoft BinSkim](https://github.com/Microsoft/binskim#getting-started-as-a-user)
 
 
-## Deployment Scenario 
+## Deployment Scenario (Let's Get, Hands On With Azure)
 In this scenario we will deploy a simple AKS cluster using both Bicep & Terraform IaC languages. 
 
 Ensure you have logged into your Azure environment using the AZ CLI.
@@ -256,6 +246,7 @@ az sshkey create --name "mySSHKey" --resource-group "myResourceGroup"
 ```# Create an SSH key pair using ssh-keygen
 ssh-keygen -t rsa -b 4096
 ```
+Hint: Remember to deploy the bicep script in the corrent working directory.
 
 #### Step 3: Bicep Deployment Commands
 After you have made changes to parameters (or leave it as default). You can run the following command to deploy your AKS cluster:
@@ -277,25 +268,34 @@ Once your deployment is complete, you can validate this by either checking outpu
 
 In order to connect to your cluster we need install the Azure kubectl tools, using Azure CLI.
 
-#### Azure CLI
-```
-az aks install-cli
-```
 We need to configure kubectl to connect to your freshly deployed AKS cluster using the az aks get-credentials command. The following command will retrieve your AKS cluster credentials and configure kubectl to use them.
 
 #### Azure CLI
 ```
 az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
 ```
-Validate the connection to your cluster using the kubectl get command. This command will output a list of the cluster nodes.
+Validate the connection to your cluster using the kubectl get command. This command will output a list of the cluster nodes. Verifying that we successfuly deployed and connected to our AKS cluster.
 
 #### Azure CLI
 ```
 kubectl get nodes
 ```
 
+Example Output:
+```
+NAME                                STATUS   ROLES   AGE     VERSION
+aks-agentpool-21074942-vmss000000   Ready    agent   2m49s   v1.27.7
+aks-agentpool-21074942-vmss000001   Ready    agent   3m21s   v1.27.7
+aks-agentpool-21074942-vmss000002   Ready    agent   2m49s   v1.27.7
+```
 
-### AKS Cluster Deployment Using Terraform
+### Conclusion:
+ In the aboove deployment, we utilized Bicep, a domain-specific language for Azure Resource Manager templates, to orchestrate the creation of an Azure Kubernetes Cluster (AKS). Leveraging the power of Bicep, we defined and deployed the necessary resources in a concise and efficient manner.
+
+Following the deployment, we successfully established a connection to the created AKS using the command-line interface (CLI) provided by Azure. Through the CLI commands, we accessed and interacted with the AKS, enabling seamless management and utilization of the Kubernetes cluster for our intended purposes. This process allowed us to efficiently harness the capabilities of AKS while benefiting from the flexibility and convenience offered by command-line access and control.
+
+
+## AKS Cluster Deployment Using Terraform
 
 Here's a basic Terraform module to deploy a simple AKS (Azure Kubernetes Service) cluster. This example is a basic terraform module structure consisting of 3 files:
 
@@ -546,12 +546,8 @@ Apply complete! Resources: 2 added, 0 changed, 0 destroyed.
 
 #### Step 4: Connect To Your Cluster
 
-In order to connect to your cluster we need install the Azure kubectl tools, using Azure CLI.
+In order to connect to your cluster we need install the kubectl tools, using Azure CLI.
 
-#### Azure CLI
-```
-az aks install-cli
-```
 We need to configure kubectl to connect to your freshly deployed AKS cluster using the az aks get-credentials command. The following command will retrieve your AKS cluster credentials and configure kubectl to use them.
 
 #### Azure CLI
@@ -565,19 +561,24 @@ Validate the connection to your cluster using the kubectl get command. This comm
 kubectl get nodes
 ```
 
+Example Output:
+```
+aks-agentpool-21084942-vmss000000   Ready    agent   16m   v1.27.7
+aks-agentpool-21084942-vmss000001   Ready    agent   16m   v1.27.7
+aks-agentpool-21084942-vmss000002   Ready    agent   16m   v1.27.7
+```
 
 
+### Conclusion:
+In the above deployment, Terraform served as our primary tool for provisioning an Azure Kubernetes Cluster (AKS) within the Azure ecosystem. Leveraging Terraform's infrastructure as code capabilities, we defined the configuration for the AKS and orchestrated its deployment seamlessly.
 
-
-
-
-
+Once the AKS was provisioned using Terraform, we established connectivity and management capabilities using the Azure command-line interface (CLI). Utilizing the CLI commands, we gained access and interacted with the deployed AKS. This approach empowered us to effectively administer and leverage the functionalities of the Kubernetes cluster.
 
 
 
 ## Contributing
 
-Guidelines for contributing to the project and how to get involved.
+Please reachout to Andrew Cade.
 
 ## License
 
