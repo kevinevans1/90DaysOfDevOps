@@ -134,7 +134,7 @@ Links:
 ## Deployment Scenario (Let's Get, Hands On With Azure)
 In this scenario we will deploy a simple AKS cluster using both Bicep & Terraform IaC languages. 
 
-Ensure you have logged into your Azure environment using the AZ CLI.
+Ensure you have logged into your Azure environment using the Azure CLI.
 ### Azure CLI
 ```
 az login
@@ -589,3 +589,4 @@ This project is licensed under the ![Static Badge](https://img.shields.io/badge/
 
 - Website: [codetocloud](http://codetocloud.tech)
 - GitHub: [github.com/kevinevans1](https://github.com/kevinevans1)
+- [LinkedIn] (https://ca.linkedin.com/in/kevinevans01)
