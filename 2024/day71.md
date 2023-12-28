@@ -589,4 +589,4 @@ This project is licensed under the ![Static Badge](https://img.shields.io/badge/
 
 - Website: [codetocloud](http://codetocloud.tech)
 - GitHub: [github.com/kevinevans1](https://github.com/kevinevans1)
-- [LinkedIn] (https://ca.linkedin.com/in/kevinevans01)
+- LinkedIn: [Kevin Evans LinkedIn Profile](https://ca.linkedin.com/in/kevinevans01)
