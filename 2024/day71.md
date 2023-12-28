@@ -115,7 +115,7 @@ Securing Infrastructure as Code (IaC) deployments on Azure, encompassing tools l
 - Tools must not require security expertise.
 - Tools must avoid a high false-positive rate of reporting issues.
 
-There is a number of ways automating security into your Azure DevOps or GitHub workflow using [Defender for Cloud DevOps](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction) or [Cloud Security Posture Management (CPSM)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management)
+There is a number of ways automating security into your Azure DevOps or GitHub workflow using [Defender for Cloud DevOps](https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-devops-introduction) or [Cloud Security Posture Management (CSPM)](https://learn.microsoft.com/en-us/azure/defender-for-cloud/concept-cloud-security-posture-management)
 
 ### Static Code Analysis Security Tools
 
@@ -246,7 +246,7 @@ az sshkey create --name "mySSHKey" --resource-group "myResourceGroup"
 ```# Create an SSH key pair using ssh-keygen
 ssh-keygen -t rsa -b 4096
 ```
-Hint: Remember to deploy the bicep script in the corrent working directory.
+Hint: Remember to deploy the bicep script in the correct working directory.
 
 #### Step 3: Bicep Deployment Commands
 After you have made changes to parameters (or leave it as default). You can run the following command to deploy your AKS cluster:
@@ -274,7 +274,7 @@ We need to configure kubectl to connect to your freshly deployed AKS cluster usi
 ```
 az aks get-credentials --resource-group myResourceGroup --name myAKSCluster
 ```
-Validate the connection to your cluster using the kubectl get command. This command will output a list of the cluster nodes. Verifying that we successfuly deployed and connected to our AKS cluster.
+Validate the connection to your cluster using the kubectl get command. This command will output a list of the cluster nodes. Verifying that we successfully deployed and connected to our AKS cluster.
 
 #### Azure CLI
 ```
@@ -290,7 +290,7 @@ aks-agentpool-21074942-vmss000002   Ready    agent   2m49s   v1.27.7
 ```
 
 ### Conclusion:
- In the aboove deployment, we utilized Bicep, a domain-specific language for Azure Resource Manager templates, to orchestrate the creation of an Azure Kubernetes Cluster (AKS). Leveraging the power of Bicep, we defined and deployed the necessary resources in a concise and efficient manner.
+ In the above deployment, we utilized Bicep, a domain-specific language for Azure Resource Manager templates, to orchestrate the creation of an Azure Kubernetes Cluster (AKS). Leveraging the power of Bicep, we defined and deployed the necessary resources in a concise and efficient manner.
 
 Following the deployment, we successfully established a connection to the created AKS using the command-line interface (CLI) provided by Azure. Through the CLI commands, we accessed and interacted with the AKS, enabling seamless management and utilization of the Kubernetes cluster for our intended purposes. This process allowed us to efficiently harness the capabilities of AKS while benefiting from the flexibility and convenience offered by command-line access and control.
 
@@ -578,7 +578,7 @@ Once the AKS was provisioned using Terraform, we established connectivity and ma
 
 ## Contributing
 
-Please reachout to Andrew Cade.
+Please reach out to Michael Cade.
 
 ## License
 
